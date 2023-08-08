@@ -14,8 +14,8 @@ class MovieModel {
   final double voteAverage;
   final int voteCount;
 
-  MovieModel.fromMap(Map<String, dynamic> json):
-        adult = json["adult"],
+  MovieModel.fromMap(Map<String, dynamic> json)
+      : adult = json["adult"],
         backdropPath = json["backdrop_path"],
         genreIds = List<int>.from(json["genre_ids"].map((x) => x)),
         id = json["id"],

@@ -1,13 +1,13 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../home_page/home_page.dart';
 
 class Splash extends StatefulWidget {
+  const Splash({super.key});
+
   @override
-  _SplashState createState() => _SplashState();
+  State<Splash> createState() => _SplashState();
 }
 
 class _SplashState extends State<Splash> {
@@ -15,23 +15,21 @@ class _SplashState extends State<Splash> {
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
-    Future.delayed(Duration(seconds: 3)).then((_){
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomePage()));
-    }
-    );
+    Future.delayed(const Duration(seconds: 3)).then((_) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const HomePage()));
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        Container(
-          child: Image.asset(
-            "assets/enter.png",
-            fit: BoxFit.cover,
-            width: double.infinity,
-            height: double.infinity,
-          ),
+        Image.asset(
+          "assets/enter.png",
+          fit: BoxFit.cover,
+          width: double.infinity,
+          height: double.infinity,
         ),
         Positioned.fill(
           child: DecoratedBox(
@@ -41,31 +39,31 @@ class _SplashState extends State<Splash> {
                 end: Alignment.bottomCenter,
                 colors: [
                   Colors.transparent,
-                  Color(0xD814151C),
+                  const Color(0xD814151C),
                   Colors.black.withOpacity(0.9),
                 ],
-                stops: [0, 0.7, 1.0],
+                stops: const [0, 0.7, 1.0],
               ),
             ),
           ),
         ),
-        Center(
-          child: Container(
+        const Center(
+          child: SizedBox(
             width: 20,
             height: 20,
-            child: const CircularProgressIndicator(
+            child: CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
             ),
           ),
         ),
-        Positioned(
+        const Positioned(
           left: 25,
           right: 25,
           bottom: 200,
-          child: Container(
+          child: SizedBox(
             height: 16,
             width: 177,
-            child: const ImageIcon(
+            child: ImageIcon(
               AssetImage(
                 'assets/icon.png',
               ),
