@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tmdb_movies/models/movie_model.dart';
+import 'package:tmdb_movies/models/list_movies_model.dart';
 
 class MovieTile extends StatelessWidget {
   const MovieTile({required this.movie, required this.onTap, super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tmdb_movies/data/data_fetch.dart';
-import 'package:tmdb_movies/models/movie_model.dart';
+import 'package:tmdb_movies/models/list_movies_model.dart';
 
 class HomeController extends ChangeNotifier {
   List<MovieModel> movies = [];
@@ -16,7 +16,6 @@ class HomeController extends ChangeNotifier {
     final (pages, newMovies) = await fetchData(page);
     page++;
     this.pages = pages;
-    print(pages);
 
     movies.addAll(newMovies);
     isLoading = false;

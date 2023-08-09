@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tmdb_movies/pages/movie_info/movie_info.dart';
-
-import 'home_controller.dart';
-import 'widgets/movie_tile.dart';
+import 'package:tmdb_movies/pages/home_page/widgets/movie_list.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,37 +9,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final scrollController = ScrollController();
-  final pageController = HomeController();
-
-  @override
-  void initState() {
-    pageController.requestApi();
-    super.initState();
-    scrollController.addListener(scrollListener);
-  }
-
-  @override
-  void dispose() {
-    scrollController.dispose();
-    super.dispose();
-  }
-
-  void scrollListener() {
-    if (scrollController.offset >=
-        scrollController.position.maxScrollExtent -
-            scrollController.position.viewportDimension) {
-      pageController.requestApi();
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: const Color(0xFF540BA1),
+      // backgroundColor: const Color(0xFF540BA1),
       body: Container(
-        width: double.infinity,
-        height: double.infinity,
+        width: screenSize.width,
+        height: screenSize.height,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: const Alignment(0.00, -1.00),
@@ -106,46 +80,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            Container(
-              height: 250,
-              padding: const EdgeInsets.only(left: 22, top: 10),
-              child: ListenableBuilder(
-                listenable: pageController,
-                builder: (_, __) {
-                  return ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: pageController.movies.length +
-                        (pageController.isLoading ? 1 : 0),
-                    itemBuilder: (context, index) {
-                      if (index == pageController.movies.length) {
-                        return const Center(
-                          //todo: tirei o padding
-                          child: Padding(
-                            padding: EdgeInsets.all(24.0),
-                            child: CircularProgressIndicator(),
-                          ),
-                        );
-                      }
-                      final movie = pageController.movies[index];
-                      return Container(
-                        width: 150,
-                        child: MovieTile(
-                          movie: movie,
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => MovieInfo(),
-                                settings: RouteSettings(arguments: movie),
-                              ),
-                            );
-                          },
-                        ),
-                      );
-                    },
-                  );
-                },
-              ),
-            ),
+            MovieList(),
             Padding(
               padding: const EdgeInsets.only(
                   top: 40, bottom: 20, right: 20, left: 40),
@@ -159,46 +94,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            Container(
-              height: 250,
-              padding: const EdgeInsets.only(left: 22, top: 10),
-              child: ListenableBuilder(
-                listenable: pageController,
-                builder: (_, __) {
-                  return ListView.builder(
-                    controller: scrollController,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: pageController.movies.length +
-                        (pageController.isLoading ? 1 : 0),
-                    itemBuilder: (context, index) {
-                      if (index == pageController.movies.length) {
-                        return const Center(
-                          //todo: tirei o padding
-                          // child: Padding(
-                          //   padding: EdgeInsets.all(24.0),
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                      final movie = pageController.movies[index];
-                      return Container(
-                        width: 150,
-                        child: MovieTile(
-                          movie: movie,
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => MovieInfo(),
-                                settings: RouteSettings(arguments: movie),
-                              ),
-                            );
-                          },
-                        ),
-                      );
-                    },
-                  );
-                },
-              ),
-            ),
+            MovieList(),
           ],
         ),
       ),

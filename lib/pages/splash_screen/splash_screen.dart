@@ -23,13 +23,14 @@ class _SplashState extends State<Splash> {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     return Stack(
       children: <Widget>[
         Image.asset(
           "assets/enter.png",
           fit: BoxFit.cover,
-          width: double.infinity,
-          height: double.infinity,
+          width: screenSize.width,
+          height: screenSize.height,
         ),
         Positioned.fill(
           child: DecoratedBox(
