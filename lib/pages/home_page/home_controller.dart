@@ -6,17 +6,17 @@ class HomeController extends ChangeNotifier {
   List<MovieModel> movies = [];
   bool isLoading = false;
   int page = 1;
-  int? pagesCount;
+  int? pages;
 
   void requestApi() async {
     if (isLoading) return;
-    if (page == this.pagesCount) return;
+    if (page == this.pages) return;
     isLoading = true;
 
-    final (pagesCount, newMovies) = await fetchData(page);
+    final (pages, newMovies) = await fetchData(page);
     page++;
-    this.pagesCount = pagesCount;
-    print(pagesCount);
+    this.pages = pages;
+    print(pages);
 
     movies.addAll(newMovies);
     isLoading = false;
