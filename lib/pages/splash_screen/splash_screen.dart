@@ -51,9 +51,7 @@ class _SplashState extends State<Splash> {
           child: SizedBox(
             width: 20,
             height: 20,
-            child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-            ),
+            child: CircularProgressIndicator(),
           ),
         ),
         const Positioned(
