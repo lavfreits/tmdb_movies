@@ -1,31 +1,40 @@
 import 'package:flutter/material.dart';
 
 class GenreBox extends StatelessWidget {
-  const GenreBox({super.key, this.genre});
+  const GenreBox({Key? key, this.genre}) : super(key: key);
 
-  final genre;
+  final String? genre;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 82,
-      height: 31,
-      decoration: ShapeDecoration(
-        color: Color(0xFF2F3142),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(34),
+    Size screenSize = MediaQuery.of(context).size;
+
+    if (genre != null) {
+      return Container(
+        height: 30,
+        decoration: ShapeDecoration(
+          color: Color(0xFF2F3142),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(34),
+          ),
         ),
-      ),
-      child: Text(
-        genre,
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 15,
-          fontFamily: 'Inter',
-          fontWeight: FontWeight.w500,
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.only(left: 8, right: 8),
+            child: Text(
+              genre!,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 15,
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
         ),
-      ),
-    );
+      );
+    }
+    return Center(child: CircularProgressIndicator());
   }
 }

@@ -2,7 +2,7 @@ class TitleMovieModel {
   final bool adult;
   final String backdropPath;
   final dynamic belongsToCollection;
-  final List genres;
+  final List<String?> genres;
   final String homepage;
   final int id;
   final String imdbId;
@@ -28,7 +28,7 @@ class TitleMovieModel {
       : adult = json["adult"],
         backdropPath = json["backdrop_path"],
         belongsToCollection = json["belongs_to_collection"],
-        genres = List.from(json["genres"].map((x) => x)),
+        genres = List.from(json["genres"].map((x) => x["name"].toString())),
         homepage = json["homepage"],
         id = json["id"],
         imdbId = json["imdb_id"],

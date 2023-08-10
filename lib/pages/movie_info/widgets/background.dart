@@ -18,7 +18,7 @@ class Background extends StatelessWidget {
           height: (screenSize.height / 1.8),
         ),
         Container(
-          height: screenSize.height,
+          height: (screenSize.height),
           width: screenSize.width,
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -26,10 +26,16 @@ class Background extends StatelessWidget {
               end: Alignment.bottomCenter,
               colors: [
                 Colors.transparent,
-                Color(0xFF21222E),
+                Colors.black.withOpacity(0.9),
+                // Color(0xFF21222E),
               ],
               stops: const [0.2, 0.5],
             ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.3),
+              ),
+            ],
           ),
         ),
       ],

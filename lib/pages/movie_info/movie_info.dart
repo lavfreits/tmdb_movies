@@ -27,14 +27,15 @@ class _MovieInfoState extends State<MovieInfo> {
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
-    final release =
-        DateFormat('dd/MM/yyyy').format(infoController.movie!.releaseDate);
 
     return Scaffold(
+      backgroundColor: const Color(0xFF540BA1),
       body: ListenableBuilder(
           listenable: infoController,
           builder: (_, __) {
             if (infoController.movie != null) {
+              final release = DateFormat('dd/MM/yyyy')
+                  .format(infoController.movie!.releaseDate);
               return Stack(
                 children: [
                   Background(imageUrl: infoController.movie!.posterPath),
@@ -69,28 +70,34 @@ class _MovieInfoState extends State<MovieInfo> {
                         padding: const EdgeInsets.all(30),
                         child: Row(
                           children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 10, right: 35),
-                              child: Column(
-                                children: [
-                                  // double percentageGoodRating = (infoController.movie!.voteAverage / 10) * 100;
-                                  CircularProgressIndicator(),
-                                ],
-                              ),
-                            ),
+                            // Padding(
+                            //   padding:
+                            //       const EdgeInsets.only(left: 10, right: 35),
+                            //   child: Column(
+                            //     children: [
+                            //       // double percentageGoodRating = (infoController.movie!.voteAverage / 10) * 100;
+                            //       CircularProgressIndicator(),
+                            //     ],
+                            //   ),
+                            // ),
                             Column(
                               children: [
                                 Row(
                                   children: [
-                                    Text(
-                                      '${infoController.movie!.title} (${infoController.movie!.releaseDate.year})',
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 22,
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w700,
+                                    Container(
+                                      alignment: Alignment.center,
+                                      constraints: BoxConstraints(
+                                          maxWidth: screenSize.width - 80),
+                                      child: Text(
+                                        '${infoController.movie!.title} (${infoController.movie!.releaseDate.year})',
+                                        overflow: TextOverflow.clip,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 22,
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight.w700,
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -130,41 +137,61 @@ class _MovieInfoState extends State<MovieInfo> {
                           ),
                         ),
                       ),
-                      Text(
-                        'Categoria(s)',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w700,
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: 30,
+                          bottom: 20, top: 10,
+                          //screenSize.width / 18,
+                          right: 20,
+                          //screenSize.width / 18,
+                        ),
+                        child: Text(
+                          'Categoria(s)',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
                       ),
+
                       Container(
-                        height: screenSize.height / 20,
+                        padding: EdgeInsets.only(left: 20, right: 20),
+                        width: screenSize.width,
+                        height: 40,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount: infoController.movie!.genres.length,
                           itemBuilder: (context, index) {
                             final genre = infoController.movie!.genres[index];
                             return Container(
-                              width: 30,
-                              child: GenreBox(genre: genre!),
+                              margin: EdgeInsets.only(right: 10),
+                              child: GenreBox(genre: genre),
                             );
                           },
                         ),
                       ),
-
-                      Text(
-                        'Recomendações',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w700,
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: 30,
+                          bottom: 15, top: 30,
+                          //screenSize.width / 18,
+                          right: 20,
+                          //screenSize.width / 18,
+                        ),
+                        child: Text(
+                          'Recomendações',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
                       ),
                       MovieList(),
-                      SizedBox(height: 30),
+                      SizedBox(height: 60),
                       //ver alguma forma de tentar tirar o titulo q esta aparecendo atraves do id da lista p ele n aparecer
                     ],
                   ),

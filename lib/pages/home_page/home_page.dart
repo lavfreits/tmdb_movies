@@ -13,7 +13,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
-      // backgroundColor: const Color(0xFF540BA1),
       body: Container(
         width: screenSize.width,
         height: screenSize.height,
