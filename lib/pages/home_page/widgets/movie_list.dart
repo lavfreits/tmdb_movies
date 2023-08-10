@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tmdb_movies/pages/home_page/home_controller.dart';
-import 'package:tmdb_movies/pages/movie_info/movie_info.dart';
+import 'package:tmdb_movies/pages/movie_info_page/movie_info_page.dart';
 
 import 'movie_tile.dart';
 
