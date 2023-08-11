@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tmdb_movies/pages/home_page/widgets/movie_list.dart';
+import 'package:tmdb_movies/components/movie_list.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -9,9 +9,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  //late final ListMovieBloc bloc;
+
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
+    Size screenSize = MediaQuery
+        .of(context)
+        .size;
     return Scaffold(
       body: Container(
         width: screenSize.width,
@@ -37,10 +41,10 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             Container(
               height: 150,
-              width: 280,
+              width: screenSize.width - 80,
               padding: const EdgeInsets.only(
                   top: 40, bottom: 20, right: 20, left: 40),
-              child: Text(
+              child: const Text(
                 'O que você quer assistir hoje?',
                 style: TextStyle(
                   color: Colors.white,
@@ -51,38 +55,39 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Container(
-              width: 400,
+              width: screenSize.width - 5,
               height: 50,
               padding: const EdgeInsets.only(
                 left: 30,
                 right: 30,
               ),
               child: TextField(
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   hintText: 'Buscar',
-                  hintStyle: TextStyle(
+                  hintStyle: const TextStyle(
                     color: Colors.white,
                     fontSize: 15,
                     fontFamily: 'Inter',
                     fontWeight: FontWeight.w500,
                   ),
                   filled: true,
-                  fillColor: Color(0xFF540BA1).withOpacity(0.5),
+                  fillColor: const Color(0xFF540BA1).withOpacity(0.5),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25),
                     borderSide: BorderSide.none,
                   ),
                   contentPadding:
-                      EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                  suffixIcon: Icon(Icons.search_outlined, color: Colors.white),
+                  const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                  suffixIcon:
+                  const Icon(Icons.search_outlined, color: Colors.white),
                 ),
               ),
             ),
-            MovieList(),
-            Padding(
-              padding: const EdgeInsets.only(
-                  top: 40, bottom: 20, right: 20, left: 40),
+            const MovieList(),
+            const Padding(
+              padding:
+              EdgeInsets.only(top: 40, bottom: 20, right: 20, left: 40),
               child: Text(
                 'Mais populares',
                 style: TextStyle(
@@ -93,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            MovieList(),
+            const MovieList(),
           ],
         ),
       ),

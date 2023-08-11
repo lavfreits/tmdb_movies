@@ -13,18 +13,18 @@ class GenreBox extends StatelessWidget {
       return Container(
         height: 30,
         decoration: ShapeDecoration(
-          color: Color(0xFF2F3142),
+          color: const Color(0xFF2F3142),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(34),
           ),
         ),
         child: Center(
           child: Padding(
-            padding: EdgeInsets.only(left: 8, right: 8),
+            padding: const EdgeInsets.only(left: 8, right: 8),
             child: Text(
               genre!,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 15,
                 fontFamily: 'Inter',
@@ -35,6 +35,6 @@ class GenreBox extends StatelessWidget {
         ),
       );
     }
-    return Center(child: CircularProgressIndicator());
+    return const Center(child: CircularProgressIndicator());
   }
 }

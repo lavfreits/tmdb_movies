@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:tmdb_movies/pages/home_page/widgets/movie_list.dart';
+import 'package:tmdb_movies/components/movie_list.dart';
 
+import 'components/background.dart';
+import 'components/genres.dart';
 import 'movie_info_controller.dart';
-import 'widgets/background.dart';
-import 'widgets/genres.dart';
 
 class MovieInfo extends StatefulWidget {
   const MovieInfo({super.key, required this.id});
@@ -47,7 +47,7 @@ class _MovieInfoState extends State<MovieInfo> {
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
-                          child: Row(
+                          child: const Row(
                             children: [
                               Icon(Icons.arrow_back, color: Colors.white),
                               Text(
@@ -92,7 +92,7 @@ class _MovieInfoState extends State<MovieInfo> {
                                         '${infoController.movie!.title} (${infoController.movie!.releaseDate.year})',
                                         overflow: TextOverflow.clip,
                                         textAlign: TextAlign.center,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.white,
                                           fontSize: 22,
                                           fontFamily: 'Inter',
@@ -106,7 +106,7 @@ class _MovieInfoState extends State<MovieInfo> {
                                   children: [
                                     Text(
                                       '${release.toString()} (BR)',
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Color(0xFFBBBBBB),
                                         fontSize: 16,
                                         fontFamily: 'Inter',
@@ -129,7 +129,7 @@ class _MovieInfoState extends State<MovieInfo> {
                         child: Text(
                           infoController.movie!.overview,
                           textAlign: TextAlign.justify,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Color(0xFFCCCCCC),
                             fontSize: 14,
                             fontFamily: 'Inter',
@@ -137,7 +137,7 @@ class _MovieInfoState extends State<MovieInfo> {
                           ),
                         ),
                       ),
-                      Padding(
+                      const Padding(
                         padding: EdgeInsets.only(
                           left: 30,
                           bottom: 20, top: 10,
@@ -157,7 +157,7 @@ class _MovieInfoState extends State<MovieInfo> {
                       ),
 
                       Container(
-                        padding: EdgeInsets.only(left: 20, right: 20),
+                        padding: const EdgeInsets.only(left: 20, right: 20),
                         width: screenSize.width,
                         height: 40,
                         child: ListView.builder(
@@ -166,13 +166,13 @@ class _MovieInfoState extends State<MovieInfo> {
                           itemBuilder: (context, index) {
                             final genre = infoController.movie!.genres[index];
                             return Container(
-                              margin: EdgeInsets.only(right: 10),
+                              margin: const EdgeInsets.only(right: 10),
                               child: GenreBox(genre: genre),
                             );
                           },
                         ),
                       ),
-                      Padding(
+                      const Padding(
                         padding: EdgeInsets.only(
                           left: 30,
                           bottom: 15, top: 30,
@@ -190,15 +190,15 @@ class _MovieInfoState extends State<MovieInfo> {
                           ),
                         ),
                       ),
-                      MovieList(),
-                      SizedBox(height: 60),
+                      const MovieList(),
+                      const SizedBox(height: 60),
                       //ver alguma forma de tentar tirar o titulo q esta aparecendo atraves do id da lista p ele n aparecer
                     ],
                   ),
                 ],
               );
             }
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }),
     );
   }
