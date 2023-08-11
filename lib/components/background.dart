@@ -27,9 +27,10 @@ class Background extends StatelessWidget {
               colors: [
                 Colors.transparent,
                 Colors.black.withOpacity(0.9),
+                Colors.black.withOpacity(1),
                 // Color(0xFF21222E),
               ],
-              stops: const [0.2, 0.5],
+              stops: const [0.1, 0.4, 0.5],
             ),
             boxShadow: [
               BoxShadow(
@@ -42,23 +43,3 @@ class Background extends StatelessWidget {
     );
   }
 }
-/*Image.network(
-                    infoController.movie.posterPath,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: const Alignment(0.00, -1.00),
-                        end: const Alignment(0, 1),
-                        colors: [
-                          const Color(0xFF540BA1),
-                          Colors.black.withOpacity(0.8),
-                        ],
-                        stops: const [0, 0.6],
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.5),
-                        ),
-                      ],
-                    ),
-                  ),*/

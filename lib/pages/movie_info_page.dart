@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:tmdb_movies/components/background.dart';
 import 'package:tmdb_movies/components/genres.dart';
 import 'package:tmdb_movies/components/movie_list.dart';
-
-import 'movie_info_controller.dart';
+import 'package:tmdb_movies/logic/movie_logic/movie_cubit.dart';
 
 class MovieInfo extends StatefulWidget {
   const MovieInfo({super.key, required this.id});
@@ -16,29 +16,35 @@ class MovieInfo extends StatefulWidget {
 }
 
 class _MovieInfoState extends State<MovieInfo> {
-  final InfoController infoController = InfoController();
+  final MovieCubit movieCubit = MovieCubit();
 
   @override
   void initState() {
-    infoController.requestApiMovie(widget.id);
+    movieCubit.getMovie(widget.id);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
+    Size screenSize = MediaQuery
+        .of(context)
+        .size;
 
     return Scaffold(
       backgroundColor: const Color(0xFF540BA1),
-      body: ListenableBuilder(
-          listenable: infoController,
-          builder: (_, __) {
-            if (infoController.movie != null) {
-              final release = DateFormat('dd/MM/yyyy')
-                  .format(infoController.movie!.releaseDate);
+      body: BlocBuilder<MovieCubit, MovieStates>(
+          bloc: movieCubit,
+          builder: (context, state) {
+            if (state is MovieLoadingState) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (state is MovieSucessState) {
+              final release =
+              DateFormat('dd/MM/yyyy').format(state.movie!.releaseDate);
               return Stack(
                 children: [
-                  Background(imageUrl: infoController.movie!.posterPath),
+                  Background(imageUrl: state.movie!.posterPath),
                   ListView(
                     children: [
                       Padding(
@@ -89,7 +95,8 @@ class _MovieInfoState extends State<MovieInfo> {
                                       constraints: BoxConstraints(
                                           maxWidth: screenSize.width - 80),
                                       child: Text(
-                                        '${infoController.movie!.title} (${infoController.movie!.releaseDate.year})',
+                                        '${state.movie!.title} (${state.movie!
+                                            .releaseDate.year})',
                                         overflow: TextOverflow.clip,
                                         textAlign: TextAlign.center,
                                         style: const TextStyle(
@@ -127,7 +134,7 @@ class _MovieInfoState extends State<MovieInfo> {
                             top: 10,
                             bottom: 10),
                         child: Text(
-                          infoController.movie!.overview,
+                          state.movie!.overview,
                           textAlign: TextAlign.justify,
                           style: const TextStyle(
                             color: Color(0xFFCCCCCC),
@@ -162,9 +169,9 @@ class _MovieInfoState extends State<MovieInfo> {
                         height: 40,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: infoController.movie!.genres.length,
+                          itemCount: state.movie!.genres.length,
                           itemBuilder: (context, index) {
-                            final genre = infoController.movie!.genres[index];
+                            final genre = state.movie!.genres[index];
                             return Container(
                               margin: const EdgeInsets.only(right: 10),
                               child: GenreBox(genre: genre),
@@ -197,8 +204,23 @@ class _MovieInfoState extends State<MovieInfo> {
                   ),
                 ],
               );
+            } else if (state is MovieErrorState) {
+              return Column(
+                // padding: const EdgeInsets.only(left: 22),
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  const Icon(Icons.not_interested_outlined,
+                      size: 30.0, color: Colors.white),
+                  const SizedBox(height: 16.0),
+                  Text(
+                    state.error,
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ],
+              );
             }
-            return const Center(child: CircularProgressIndicator());
+            return Container();
           }),
     );
   }

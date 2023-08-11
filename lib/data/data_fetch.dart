@@ -4,9 +4,11 @@ import 'package:http/http.dart' as http;
 
 import '../models/list_movies_model.dart';
 
-Future<(int, List<MovieModel>)> fetchData(int page) async {
+//Future<(int, List<MovieModel>)> fetchData(int page) async {
+Future<List<MovieModel>> fetchData(int page) async {
   final url = Uri.parse(
       'https://api.themoviedb.org/3/movie/popular?language=pt-BR&page=$page');
+  //'https://api.themoviedb.org/3/movie/popular?language=pt-BR&page=1');
 
   try {
     final response = await http.get(url, headers: {
@@ -20,8 +22,9 @@ Future<(int, List<MovieModel>)> fetchData(int page) async {
       for (Map<String, dynamic> json in jsonData['results']! as List) {
         movies.add(MovieModel.fromMap(json));
       }
-      final pagesCount = jsonData['page'] as int;
-      return (pagesCount, movies);
+      // final pagesCount = jsonData['page'] as int;
+      return movies;
+      // return (pagesCount, movies);
     } else {
       throw Exception('Failed to load data');
     }
