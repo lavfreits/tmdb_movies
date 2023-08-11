@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:tmdb_movies/components/background.dart';
+import 'package:tmdb_movies/components/genres.dart';
 import 'package:tmdb_movies/components/movie_list.dart';
 
-import 'components/background.dart';
-import 'components/genres.dart';
 import 'movie_info_controller.dart';
 
 class MovieInfo extends StatefulWidget {
