@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmdb_movies/logic/home_logic/home_cubit.dart';
+import 'package:tmdb_movies/logic/home_logic/home_bloc.dart';
+import 'package:tmdb_movies/logic/home_logic/home_events.dart';
 import 'package:tmdb_movies/pages/movie_info_page.dart';
 
-import 'movie_tile.dart';
+import 'movie_tile_widget.dart';
 
 class MovieList extends StatefulWidget {
   const MovieList({Key? key}) : super(key: key);
@@ -14,19 +15,19 @@ class MovieList extends StatefulWidget {
 
 class _MovieListState extends State<MovieList> {
   final ScrollController scrollController = ScrollController();
-  final HomeCubit homeCubit = HomeCubit();
-  int page = 1;
+  final HomeBloc homeBloc = HomeBloc();
 
   @override
   void initState() {
     super.initState();
-    homeCubit.getMovies(page);
+    homeBloc.add(LoadMoviesEvent());
     scrollController.addListener(scrollListener);
   }
 
   @override
   void dispose() {
     scrollController.dispose();
+    homeBloc.close();
     super.dispose();
   }
 
@@ -34,8 +35,8 @@ class _MovieListState extends State<MovieList> {
     if (scrollController.offset >=
         scrollController.position.maxScrollExtent -
             scrollController.position.viewportDimension) {
-      page++;
-      homeCubit.getMovies(page);
+      // page++;
+      homeBloc.add(LoadMoviesEvent());
     }
   }
 
@@ -44,8 +45,8 @@ class _MovieListState extends State<MovieList> {
     return Container(
       padding: const EdgeInsets.only(left: 22, top: 10),
       height: 250,
-      child: BlocBuilder<HomeCubit, HomeStates>(
-        bloc: homeCubit,
+      child: BlocBuilder<HomeBloc, HomeStates>(
+        bloc: homeBloc,
         builder: (context, state) {
           if (state is HomeLoadingState) {
             return const Center(

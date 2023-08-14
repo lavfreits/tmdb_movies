@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:tmdb_movies/components/background.dart';
-import 'package:tmdb_movies/components/genres.dart';
-import 'package:tmdb_movies/components/movie_list.dart';
 import 'package:tmdb_movies/logic/movie_logic/movie_cubit.dart';
+import 'package:tmdb_movies/widgets/background_widget.dart';
+import 'package:tmdb_movies/widgets/genres_widget.dart';
+import 'package:tmdb_movies/widgets/movie_list_widget.dart';
 
 class MovieInfo extends StatefulWidget {
   const MovieInfo({super.key, required this.id});

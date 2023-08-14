@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tmdb_movies/components/movie_list.dart';
+import 'package:tmdb_movies/widgets/movie_list_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -9,11 +9,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  //late final ListMovieBloc bloc;
+  //late final HomeBloc bloc;
 
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
+    Size screenSize = MediaQuery
+        .of(context)
+        .size;
     return Scaffold(
       body: ListView(
         children: [
