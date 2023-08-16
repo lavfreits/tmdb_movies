@@ -7,10 +7,15 @@ class HomeInitialState extends HomeStates {}
 class HomeLoadingState extends HomeStates {}
 
 class HomeSucessState extends HomeStates {
-  HomeSucessState({required this.movies, required this.page});
+  HomeSucessState({
+    required this.movies,
+    required this.page,
+    this.loadingMore = false,
+  });
 
   int page;
   final List<MovieModel> movies;
+  bool loadingMore;
 }
 
 class HomeErrorState extends HomeStates {

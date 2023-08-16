@@ -13,7 +13,6 @@ Future<List<MovieModel>> fetchData(int page) async {
       'Authorization':
           'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MjYxNzEwNGYyNjQ2ZDkwNTI0MGQxZjgyODg2MWRmNiIsInN1YiI6IjVkZDk4YWRmMjg3MjNjMDAxMjU2NmJjYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wKjxufaKUkyvY9kE7V9loGknl5eRJfrwB7zhOHJz4j8'
     });
-    print('carregando pg: $page');
     if (response.statusCode == 200) {
       final jsonData = json.decode(response.body);
       final movies = <MovieModel>[];

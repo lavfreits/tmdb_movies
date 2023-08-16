@@ -85,7 +85,7 @@ class _MovieListState extends State<MovieList> {
                 const SizedBox(height: 16.0),
                 Text(
                   state.error,
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 ),
               ],
             );

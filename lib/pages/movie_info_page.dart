@@ -26,9 +26,7 @@ class _MovieInfoState extends State<MovieInfo> {
 
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery
-        .of(context)
-        .size;
+    Size screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
       backgroundColor: const Color(0xFF540BA1),
@@ -41,7 +39,7 @@ class _MovieInfoState extends State<MovieInfo> {
               );
             } else if (state is MovieSucessState) {
               final release =
-              DateFormat('dd/MM/yyyy').format(state.movie!.releaseDate);
+                  DateFormat('dd/MM/yyyy').format(state.movie!.releaseDate);
               return Stack(
                 children: [
                   Background(imageUrl: state.movie!.posterPath),
@@ -95,8 +93,7 @@ class _MovieInfoState extends State<MovieInfo> {
                                       constraints: BoxConstraints(
                                           maxWidth: screenSize.width - 80),
                                       child: Text(
-                                        '${state.movie!.title} (${state.movie!
-                                            .releaseDate.year})',
+                                        '${state.movie!.title} (${state.movie!.releaseDate.year})',
                                         overflow: TextOverflow.clip,
                                         textAlign: TextAlign.center,
                                         style: const TextStyle(
@@ -215,7 +212,7 @@ class _MovieInfoState extends State<MovieInfo> {
                   const SizedBox(height: 16.0),
                   Text(
                     state.error,
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
                 ],
               );

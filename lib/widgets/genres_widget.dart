@@ -7,8 +7,6 @@ class GenreBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
-
     if (genre != null) {
       return Container(
         height: 30,
