@@ -3,11 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:tmdb_movies/logic/movie_logic/movie_cubit.dart';
 import 'package:tmdb_movies/widgets/background_widget.dart';
-import 'package:tmdb_movies/widgets/genres_widget.dart';
 import 'package:tmdb_movies/widgets/movie_list_widget.dart';
 
+import '../models/list_movies_model.dart';
+import '../widgets/genres_list_widget.dart';
+import '../widgets/get_back_button.dart';
+
 class MovieInfo extends StatefulWidget {
-  const MovieInfo({super.key, required this.id});
+  final List<MovieModel> movies;
+
+  const MovieInfo({super.key, required this.id, required this.movies});
 
   final int id;
 
@@ -45,28 +50,9 @@ class _MovieInfoState extends State<MovieInfo> {
                   Background(imageUrl: state.movie!.posterPath),
                   ListView(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 15, top: 20),
-                        child: TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: const Row(
-                            children: [
-                              Icon(Icons.arrow_back, color: Colors.white),
-                              Text(
-                                ' Voltar',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                      GetBackButton(onPressed: () {
+                        Navigator.of(context).pop();
+                       },),
                       SizedBox(
                         height: (screenSize.height / 3),
                       ),
@@ -74,16 +60,6 @@ class _MovieInfoState extends State<MovieInfo> {
                         padding: const EdgeInsets.all(30),
                         child: Row(
                           children: [
-                            // Padding(
-                            //   padding:
-                            //       const EdgeInsets.only(left: 10, right: 35),
-                            //   child: Column(
-                            //     children: [
-                            //       // double percentageGoodRating = (infoController.movie!.voteAverage / 10) * 100;
-                            //       CircularProgressIndicator(),
-                            //     ],
-                            //   ),
-                            // ),
                             Column(
                               children: [
                                 Row(
@@ -145,9 +121,7 @@ class _MovieInfoState extends State<MovieInfo> {
                         padding: EdgeInsets.only(
                           left: 30,
                           bottom: 20, top: 10,
-                          //screenSize.width / 18,
                           right: 20,
-                          //screenSize.width / 18,
                         ),
                         child: Text(
                           'Categoria(s)',
@@ -160,29 +134,14 @@ class _MovieInfoState extends State<MovieInfo> {
                         ),
                       ),
 
-                      Container(
-                        padding: const EdgeInsets.only(left: 20, right: 20),
-                        width: screenSize.width,
-                        height: 40,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: state.movie!.genres.length,
-                          itemBuilder: (context, index) {
-                            final genre = state.movie!.genres[index];
-                            return Container(
-                              margin: const EdgeInsets.only(right: 10),
-                              child: GenreBox(genre: genre),
-                            );
-                          },
-                        ),
+                      GenresList(
+                        movie: state.movie!,
                       ),
                       const Padding(
                         padding: EdgeInsets.only(
                           left: 30,
                           bottom: 15, top: 30,
-                          //screenSize.width / 18,
                           right: 20,
-                          //screenSize.width / 18,
                         ),
                         child: Text(
                           'Recomendações',
@@ -194,28 +153,17 @@ class _MovieInfoState extends State<MovieInfo> {
                           ),
                         ),
                       ),
-                      const MovieList(),
+                      MovieList(
+                        scrollController: null,
+                        movies: widget.movies,
+                      ),
                       const SizedBox(height: 60),
-                      //ver alguma forma de tentar tirar o titulo q esta aparecendo atraves do id da lista p ele n aparecer
                     ],
                   ),
                 ],
               );
             } else if (state is MovieErrorState) {
-              return Column(
-                // padding: const EdgeInsets.only(left: 22),
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  const Icon(Icons.not_interested_outlined,
-                      size: 30.0, color: Colors.white),
-                  const SizedBox(height: 16.0),
-                  Text(
-                    state.error,
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                ],
-              );
+              return ErrorWidget(state.error);
             }
             return Container();
           }),

@@ -11,19 +11,13 @@ class MovieTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.all(8),
-        child: AspectRatio(
-          aspectRatio: 260 / 310,
-          child: ClipRRect(
-            borderRadius: const BorderRadius.all(Radius.circular(8)),
+      child: ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(2)),
             child: Image.network(
               'https://image.tmdb.org/t/p/w500/${movie.posterPath}',
               fit: BoxFit.fill,
             ),
-          ),
         ),
-      ),
     );
   }
 }
