@@ -49,6 +49,13 @@ As principais tecnologias e ferramentas utilizadas neste projeto incluem:
 - Instalar dependências.
 - Executar o aplicativo no emulador ou dispositivo.
 
-## Contribuição
+## Contribuição 
+(ou próximos passos)
+ - trabalhar na funcionalidade de pesquisa
+   - cada letra q for adicionada quero q faca uma pesquisa nova
+   - ao deixar o campo de pesquisa em branco tem que voltar a aparecer a home page como no state HomePageSuccessState
+ - na versão que tem o grid view criar o list view dos filmes pra colocar na página de informações do filme
+ - terminar de replicar UI
+ - consumir uma API diferente para o segundo list view
 
 
