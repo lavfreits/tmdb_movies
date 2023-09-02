@@ -12,7 +12,11 @@ import '../widgets/get_back_button.dart';
 class MovieInfo extends StatefulWidget {
   final List<MovieModel> movies;
 
-  const MovieInfo({super.key, required this.id, required this.movies});
+  const MovieInfo({
+    super.key,
+    required this.id,
+    required this.movies,
+  });
 
   final int id;
 
@@ -21,10 +25,11 @@ class MovieInfo extends StatefulWidget {
 }
 
 class _MovieInfoState extends State<MovieInfo> {
-  final MovieCubit movieCubit = MovieCubit();
+  late MovieCubit movieCubit;
 
   @override
   void initState() {
+    movieCubit = MovieCubit();
     movieCubit.getMovie(widget.id);
     super.initState();
   }
@@ -50,9 +55,11 @@ class _MovieInfoState extends State<MovieInfo> {
                   Background(imageUrl: state.movie!.posterPath),
                   ListView(
                     children: [
-                      GetBackButton(onPressed: () {
-                        Navigator.of(context).pop();
-                       },),
+                      GetBackButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
                       SizedBox(
                         height: (screenSize.height / 3),
                       ),
@@ -120,7 +127,8 @@ class _MovieInfoState extends State<MovieInfo> {
                       const Padding(
                         padding: EdgeInsets.only(
                           left: 30,
-                          bottom: 20, top: 10,
+                          bottom: 20,
+                          top: 10,
                           right: 20,
                         ),
                         child: Text(
@@ -133,14 +141,14 @@ class _MovieInfoState extends State<MovieInfo> {
                           ),
                         ),
                       ),
-
                       GenresList(
                         movie: state.movie!,
                       ),
                       const Padding(
                         padding: EdgeInsets.only(
-                          left: 30,
-                          bottom: 15, top: 30,
+                          left: 20,
+                          bottom: 15,
+                          top: 30,
                           right: 20,
                         ),
                         child: Text(

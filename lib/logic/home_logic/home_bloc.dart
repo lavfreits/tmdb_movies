@@ -39,6 +39,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeStates> {
     emit(HomeSucessState(movies: movies, page: page));
   }
   Future<void> _performSearch(PerformSearchEvent event, Emitter<HomeStates> emit) async {
+    emit(HomeLoadingState());
     if (state is HomeSucessState) {
       final filteredMovies = (state as HomeSucessState).movies
           .where((movie) => movie.title.toLowerCase().contains(event.query.toLowerCase()))
@@ -46,4 +47,5 @@ class HomeBloc extends Bloc<HomeEvent, HomeStates> {
       emit(HomeSearchState(filteredMovies: filteredMovies));
     }
   }
+
 }

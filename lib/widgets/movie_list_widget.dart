@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tmdb_movies/pages/movie_info_page.dart';
-import 'dart:ui';
 
 import '../models/list_movies_model.dart';
 import 'movie_tile_widget.dart';

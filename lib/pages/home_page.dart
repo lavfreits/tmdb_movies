@@ -90,7 +90,8 @@ class _HomePageState extends State<HomePage> {
                 ),
                 child: TextFormField(
                   onChanged: (value) {
-                    homeBloc.add(PerformSearchEvent(textController.value.toString()));
+                    homeBloc.add(PerformSearchEvent(value));
+
                   },
                   controller: textController,
                   textInputAction: TextInputAction.search,
@@ -110,13 +111,13 @@ class _HomePageState extends State<HomePage> {
                       borderSide: BorderSide.none,
                     ),
                     contentPadding: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 20),
-                    suffixIcon:
-                        const Icon(Icons.search_outlined, color: Colors.white),
+                        vertical: 10, horizontal: 20
+                    ),
+                    suffixIcon: const Icon(Icons.search_outlined, color: Colors.white),
                   ),
                 ),
               ),
-              Container(
+                Container(
                 padding: const EdgeInsets.only(left: 30, top: 20, right: 30),
                 height: screenSize.height - 230,
                 child: BlocBuilder<HomeBloc, HomeStates>(
