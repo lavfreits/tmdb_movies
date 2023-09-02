@@ -3,19 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:tmdb_movies/logic/movie_logic/movie_cubit.dart';
 import 'package:tmdb_movies/widgets/background_widget.dart';
-import 'package:tmdb_movies/widgets/movie_list_widget.dart';
 
-import '../models/list_movies_model.dart';
 import '../widgets/genres_list_widget.dart';
 import '../widgets/get_back_button.dart';
 
 class MovieInfo extends StatefulWidget {
-  final List<MovieModel> movies;
 
   const MovieInfo({
     super.key,
     required this.id,
-    required this.movies,
   });
 
   final int id;
@@ -143,27 +139,6 @@ class _MovieInfoState extends State<MovieInfo> {
                       ),
                       GenresList(
                         movie: state.movie!,
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(
-                          left: 20,
-                          bottom: 15,
-                          top: 30,
-                          right: 20,
-                        ),
-                        child: Text(
-                          'Recomendações',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                      MovieList(
-                        scrollController: null,
-                        movies: widget.movies,
                       ),
                       const SizedBox(height: 60),
                     ],

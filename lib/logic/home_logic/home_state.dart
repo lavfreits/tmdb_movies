@@ -23,11 +23,9 @@ class HomeErrorState extends HomeStates {
 
   final String error;
 }
+
 class HomeSearchState extends HomeStates {
   final List<MovieModel> filteredMovies;
 
   HomeSearchState({required this.filteredMovies});
-
-  @override
-  List<Object?> get props => [filteredMovies];
 }

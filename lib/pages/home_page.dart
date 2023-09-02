@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tmdb_movies/widgets/movie_list_widget.dart';
 import 'package:tmdb_movies/logic/home_logic/home_bloc.dart';
 
-import '../models/list_movies_model.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -91,7 +90,6 @@ class _HomePageState extends State<HomePage> {
                 child: TextFormField(
                   onChanged: (value) {
                     homeBloc.add(PerformSearchEvent(value));
-
                   },
                   controller: textController,
                   textInputAction: TextInputAction.search,
@@ -111,13 +109,13 @@ class _HomePageState extends State<HomePage> {
                       borderSide: BorderSide.none,
                     ),
                     contentPadding: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 20
-                    ),
-                    suffixIcon: const Icon(Icons.search_outlined, color: Colors.white),
+                        vertical: 10, horizontal: 20),
+                    suffixIcon:
+                        const Icon(Icons.search_outlined, color: Colors.white),
                   ),
                 ),
               ),
-                Container(
+              Container(
                 padding: const EdgeInsets.only(left: 30, top: 20, right: 30),
                 height: screenSize.height - 230,
                 child: BlocBuilder<HomeBloc, HomeStates>(
@@ -129,17 +127,14 @@ class _HomePageState extends State<HomePage> {
                       );
                     } else if (state is HomeErrorState) {
                       return ErrorWidget(state.error);
-                    } else if (state is HomeSucessState ||
-                        state is HomeSearchState) {
-                      late List<MovieModel> moviesToDisplay;
-                      if (state is HomeSucessState) {
-                        moviesToDisplay = state.movies;
-                      } else if (state is HomeSearchState) {
-                        moviesToDisplay = state.filteredMovies;
-                      }
+                    } else if (state is HomeSucessState) {
                       return MovieList(
                           scrollController: scrollController,
-                          movies: moviesToDisplay);
+                          movies: state.movies);
+                    } else if (state is HomeSearchState) {
+                      return MovieList(
+                          scrollController: scrollController,
+                          movies: state.filteredMovies);
                     }
                     return Container();
                   },

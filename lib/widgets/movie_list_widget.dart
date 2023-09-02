@@ -37,7 +37,7 @@ class _MovieListState extends State<MovieList> {
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => MovieInfo(id: movie.id, movies: movies),
+                builder: (context) => MovieInfo(id: movie.id),
               ),
             );
           },
