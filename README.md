@@ -1,6 +1,6 @@
 # Aplicativo TMDB Movies
 
-Este é um projeto de aprendizado desenvolvido em Flutter com a integração com a API do The Movie Database (TMDB), buscando filmes populares e exibindo-os em uma interface de usuário.
+Este é um projeto de aprendizado desenvolvido em Flutter com integração com a API do The Movie Database (TMDB), buscando filmes populares e exibindo-os em uma interface.
 
 ## Recursos
 
@@ -17,7 +17,7 @@ Este é um projeto de aprendizado desenvolvido em Flutter com a integração com
 
 ### Tela de Splash
 
-A tela de splash é a primeira tela exibida quando o aplicativo é aberto. Ela apresenta o logotipo ou a animação da marca do aplicativo enquanto os recursos são carregados em segundo plano. A tela de splash geralmente fornece uma experiência inicial agradável para os usuários e pode exibir informações breves sobre o aplicativo.
+A tela de splash é a primeira tela exibida quando o aplicativo é aberto. Ela apresenta o logotipo ou a animação da marca do aplicativo enquanto os recursos são carregados em segundo plano. A tela de splash geralmente fornece uma experiência inicial agradável para os usuários.
 
 <img src="splash.png" alt="Home page" width="360" height="790">
 
@@ -31,7 +31,7 @@ Na tela inicial, são exibidas duas listas de filmes populares obtidas da API do
 
 ### Tela de Detalhes do Filme
 
-Na tela de detalhes do filme, são exibidas informações mais detalhadas sobre o filme selecionado. Isso inclui o título, a sinopse, o ano de lançamento, o gênero e outras informações relevantes. Além disso, pode haver botões ou opções para compartilhar o filme ou adicioná-lo a uma lista de favoritos.
+Na tela de detalhes do filme, são exibidas informações mais detalhadas sobre o filme selecionado. Isso inclui o título, a sinopse, o ano de lançamento, o gênero e outras informações relevantes. 
 
 <img src="movie_info.png" alt="Home page" width="360" height="790">
 
