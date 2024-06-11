@@ -32,69 +32,72 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              height: 150,
-              width: 280,
-              padding: const EdgeInsets.only(
-                  top: 40, bottom: 20, right: 20, left: 40),
-              child: Text(
-                'O que você quer assistir hoje?',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 26,
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
-            Container(
-              width: 400,
-              height: 50,
-              padding: const EdgeInsets.only(
-                left: 30,
-                right: 30,
-              ),
-              child: TextField(
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  hintText: 'Buscar',
-                  hintStyle: TextStyle(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                height: 150,
+                width: 280,
+                padding: const EdgeInsets.only(
+                    top: 40, bottom: 20, right: 20, left: 40),
+                child: Text(
+                  'O que você quer assistir hoje?',
+                  style: TextStyle(
                     color: Colors.white,
-                    fontSize: 15,
+                    fontSize: 26,
                     fontFamily: 'Inter',
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w700,
                   ),
-                  filled: true,
-                  fillColor: Color(0xFF540BA1).withOpacity(0.5),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25),
-                    borderSide: BorderSide.none,
-                  ),
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                  suffixIcon: Icon(Icons.search_outlined, color: Colors.white),
                 ),
               ),
-            ),
-            MovieList(),
-            Padding(
-              padding: const EdgeInsets.only(
-                  top: 40, bottom: 20, right: 20, left: 40),
-              child: Text(
-                'Mais populares',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w700,
+              Container(
+                width: 400,
+                height: 50,
+                padding: const EdgeInsets.only(
+                  left: 30,
+                  right: 30,
+                ),
+                child: TextField(
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    hintText: 'Buscar',
+                    hintStyle: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w500,
+                    ),
+                    filled: true,
+                    fillColor: Color(0xFF540BA1).withOpacity(0.5),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25),
+                      borderSide: BorderSide.none,
+                    ),
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                    suffixIcon:
+                        Icon(Icons.search_outlined, color: Colors.white),
+                  ),
                 ),
               ),
-            ),
-            MovieList(),
-          ],
+              MovieList(),
+              Padding(
+                padding: const EdgeInsets.only(
+                    top: 40, bottom: 20, right: 20, left: 40),
+                child: Text(
+                  'Mais populares',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+              MovieList(),
+            ],
+          ),
         ),
       ),
     );
