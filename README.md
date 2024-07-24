@@ -1,6 +1,6 @@
 # Aplicativo TMDB Movies
 
-Este é um projeto de aprendizado desenvolvido em Flutter com integração com a API do The Movie Database (TMDB), buscando filmes populares e exibindo-os em uma interface.
+Este é um projeto de aprendizado desenvolvido em Flutter com integração com a API do The Movie Database (TMDB), buscando filmes populares e exibindo-os em uma interface. Seguindo esse design do Figma: https://www.figma.com/community/file/1059842558004825230
 
 ## Recursos
 
