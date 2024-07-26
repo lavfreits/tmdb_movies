@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:tmdb_movies/presentattion/movie_info/widgets/favorite_button.dart';
 
 import '../../../logic/movie_logic/movie_bloc.dart';
+import '../../../models/movie_model.dart';
 import '../../../widgets/background.dart';
 import '../../../widgets/get_back_button.dart';
 import '../../../widgets/movie_list.dart';
@@ -14,9 +16,13 @@ class MovieDetailsWidget extends StatelessWidget {
     required this.state,
     required this.screenSize,
     required this.scrollController,
+    required this.movieBloc,
+    required this.movie,
   }) : super(key: key);
 
+  final MovieBloc movieBloc;
   final MovieSuccessState state;
+  final MovieModel movie;
   final Size screenSize;
   final ScrollController scrollController;
 
@@ -39,19 +45,34 @@ class MovieDetailsWidget extends StatelessWidget {
                           ? 20
                           : 15,
                 ),
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: GetBackButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GetBackButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    FavoriteButton(movieBloc: movieBloc, movie: movie)
+                  ],
                 ),
               ),
               SizedBox(height: screenSize.height / 3),
-              MovieDetailsHeader(state: state, screenSize: screenSize),
+              MovieDetailsHeader(
+                state: state,
+                screenSize: screenSize,
+              ),
               SizedBox(height: 0.02 * screenSize.height),
-              const Divider(color: Colors.black, thickness: 0.3),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: screenSize.width > 800
+                        ? 0.2 * screenSize.width
+                        : 0.08 * screenSize.width),
+                child: const Divider(
+                  color: Colors.black,
+                  thickness: 0.3,
+                ),
+              ),
               SizedBox(height: 0.02 * screenSize.height),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),

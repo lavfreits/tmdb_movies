@@ -35,35 +35,43 @@ class MovieContent extends StatelessWidget {
           } else if (state is HomeErrorState) {
             return ErrorWidget(state.error);
           } else if (state is HomeSuccessState) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                MovieList(
-                  scrollController: scrollController,
-                  movies: state.movies,
-                ),
-                const Padding(
-                  padding: EdgeInsets.all(30),
-                  child: Text(
-                    'Mais populares',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w700,
+            return GestureDetector(
+              onTap: () {
+                FocusScope.of(context).unfocus();
+              },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  MovieList(
+                    scrollController: scrollController,
+                    movies: state.movies,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(30),
+                    child: Text(
+                      'Mais populares',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
-                ),
-                MovieList(
-                  scrollController: scrollControllerPopulars,
-                  movies: state.populars,
-                ),
-              ],
+                  MovieList(
+                    scrollController: scrollControllerPopulars,
+                    movies: state.populars,
+                  ),
+                ],
+              ),
             );
           } else if (state is HomeSearchState) {
             if (state.filteredMovies.isEmpty) {
               return const Center(
-                child: Text('Nenhum resultado encontrado'),
+                child: Text(
+                  'Nenhum resultado encontrado',
+                  style: TextStyle(color: Colors.white),
+                ),
               );
             } else {
               return MoviesGrid(

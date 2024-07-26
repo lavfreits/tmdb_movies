@@ -28,6 +28,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     homeBloc = BlocProvider.of<HomeBloc>(context);
     textController = TextEditingController();
+
     homeBloc.add(LoadMoviesEvent());
     scrollController.addListener(scrollListener);
   }
@@ -62,48 +63,43 @@ class _HomePageState extends State<HomePage> {
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: const Color(0xFF16171F),
-      body: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).unfocus();
-        },
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            return SingleChildScrollView(
-              child: Stack(
-                children: [
-                  HomeBackground(screenSize: screenSize),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: screenSize.width > 800 ? 80 : 0,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SearchHeader(
-                          homeBloc: homeBloc,
-                          textController: textController,
-                          screenSize: screenSize,
-                        ),
-                        SearchField(
-                          homeBloc: homeBloc,
-                          textController: textController,
-                          screenSize: screenSize,
-                        ),
-                        MovieContent(
-                          homeBloc: homeBloc,
-                          scrollController: scrollController,
-                          scrollControllerPopulars: scrollControllerPopulars,
-                          scrollControllerSearch: scrollControllerSearch,
-                          screenSize: screenSize,
-                        ),
-                      ],
-                    ),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            child: Stack(
+              children: [
+                HomeBackground(screenSize: screenSize),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: screenSize.width > 800 ? 80 : 0,
                   ),
-                ],
-              ),
-            );
-          },
-        ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SearchHeader(
+                        homeBloc: homeBloc,
+                        textController: textController,
+                        screenSize: screenSize,
+                      ),
+                      SearchField(
+                        homeBloc: homeBloc,
+                        textController: textController,
+                        screenSize: screenSize,
+                      ),
+                      MovieContent(
+                        homeBloc: homeBloc,
+                        scrollController: scrollController,
+                        scrollControllerPopulars: scrollControllerPopulars,
+                        scrollControllerSearch: scrollControllerSearch,
+                        screenSize: screenSize,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

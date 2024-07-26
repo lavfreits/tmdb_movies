@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../logic/movie_logic/movie_bloc.dart';
 import '../../models/movie_model.dart';
-import 'widgets/favorite_button.dart';
 import 'widgets/movie_details_widget.dart';
 
 class MovieInfoPage extends StatefulWidget {
@@ -37,9 +36,6 @@ class _MovieInfoPageState extends State<MovieInfoPage> {
 
     return Scaffold(
       backgroundColor: const Color(0xFF20212D),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
-      floatingActionButton:
-          FavoriteButton(movieBloc: movieBloc, movie: widget.movie),
       body: BlocBuilder<MovieBloc, MovieState>(
         bloc: movieBloc,
         builder: (context, state) {
@@ -52,6 +48,8 @@ class _MovieInfoPageState extends State<MovieInfoPage> {
               state: state,
               screenSize: screenSize,
               scrollController: scrollController,
+              movieBloc: movieBloc,
+              movie: widget.movie,
             );
           } else if (state is MovieErrorState) {
             return Center(

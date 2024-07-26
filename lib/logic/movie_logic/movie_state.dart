@@ -8,7 +8,7 @@ class MovieSuccessState extends MovieState {
   final TitleMovieModel movie;
   final List<Provider> movieProviders;
   final List<MovieModel> movies;
-  late final bool isFavorite;
+  bool isFavorite;
 
   MovieSuccessState({
     required this.movie,

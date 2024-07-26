@@ -30,6 +30,14 @@ class MovieTile extends StatelessWidget {
                 ),
               );
             },
+            loadingBuilder: (context, child, loadingProgress) {
+              if (loadingProgress == null) {
+                return child;
+              }
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            },
             fit: BoxFit.fill,
           ),
         ),
