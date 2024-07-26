@@ -63,7 +63,6 @@ flutter run
 
 
 
-
 ### Referências
- - Documentação da API do TMDB[https://developer.themoviedb.org/docs/getting-started]
- - Design no Figma[https://www.figma.com/design/rgF1Lc0lwEkv2sWKs9mkAL/TMDB-(Community)?node-id=0-1&t=MUC8HwyqCiiSxlY4-0]
+ - [Documentação da API do TMDB](https://developer.themoviedb.org/docs/getting-started)
+ - [Design no Figma](https://www.figma.com/design/rgF1Lc0lwEkv2sWKs9mkAL/TMDB-(Community)?node-id=0-1&t=MUC8HwyqCiiSxlY4-0)
