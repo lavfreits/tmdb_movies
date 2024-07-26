@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:tmdb_movies/presentattion/movie_info/movie_info_page.dart';
 
 import '../models/movie_model.dart';
+import '../presentation/movie_info/movie_info_page.dart';
 import 'movie_tile.dart';
 
 class MoviesGrid extends StatefulWidget {

@@ -65,14 +65,15 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: const Color(0xFF16171F),
       body: LayoutBuilder(
         builder: (context, constraints) {
-          return SingleChildScrollView(
-            child: Stack(
-              children: [
-                HomeBackground(screenSize: screenSize),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: screenSize.width > 800 ? 80 : 0,
-                  ),
+          print("height: ${constraints.maxHeight}");
+          return Stack(
+            children: [
+              HomeBackground(screenSize: screenSize),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: screenSize.width > 800 ? 80 : 0,
+                ),
+                child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -93,11 +94,15 @@ class _HomePageState extends State<HomePage> {
                         scrollControllerSearch: scrollControllerSearch,
                         screenSize: screenSize,
                       ),
+                      if (screenSize.height > 820)
+                        SizedBox(
+                          height: screenSize.height * 0.1,
+                        ),
                     ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           );
         },
       ),

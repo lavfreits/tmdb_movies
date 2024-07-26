@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tmdb_movies/presentattion/movie_info/movie_info_page.dart';
-import 'package:tmdb_movies/widgets/scroll_button.dart';
 
 import '../models/movie_model.dart';
+import '../presentation/movie_info/movie_info_page.dart';
 import 'movie_tile.dart';
+import 'scroll_button.dart';
 
 class MovieList extends StatefulWidget {
   final List<MovieModel> movies;

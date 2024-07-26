@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:tmdb_movies/presentattion/movie_info/widgets/favorite_button.dart';
 
 import '../../../logic/movie_logic/movie_bloc.dart';
 import '../../../models/movie_model.dart';
 import '../../../widgets/background.dart';
 import '../../../widgets/get_back_button.dart';
 import '../../../widgets/movie_list.dart';
+import 'favorite_button.dart';
 import 'genres_list_widget.dart';
 import 'movie_details_header.dart';
 import 'provider_list.dart';

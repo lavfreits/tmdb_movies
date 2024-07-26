@@ -13,6 +13,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
+
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -39,14 +40,17 @@ class _SplashPageState extends State<SplashPage> {
             ),
           ),
           Padding(
-            padding: screenSize.width > 800
-                ? EdgeInsets.symmetric(
-                    horizontal: screenSize.width > 1000 ? 400 : 200,
-                    vertical: screenSize.width > 990 ? 100 : 80,
-                  )
-                : const EdgeInsets.all(28),
-            child: const SplashContent(),
-          ),
+              padding: screenSize.width > 800
+                  ? EdgeInsets.symmetric(
+                      horizontal: screenSize.width > 1000 ? 400 : 200,
+                      vertical: screenSize.width > 990 ? 100 : 80,
+                    )
+                  : const EdgeInsets.all(28),
+              child: screenSize.height < 600
+                  ? const SingleChildScrollView(
+                      child: SplashContent(),
+                    )
+                  : const SplashContent()),
         ],
       ),
     );
