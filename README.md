@@ -2,6 +2,11 @@
 
 Este é um aplicativo de filmes desenvolvido com Flutter, utilizando a API do The Movie Database (TMDB) para buscar e exibir informações sobre filmes.
 
+
+### Demonstração
+Aqui está uma demonstração do aplicativo:
+![demo](screen_recording.mp4)
+
 ## Funcionalidades
 
 - Listagem de filmes populares e melhor avaliados
@@ -48,9 +53,6 @@ flutter pub get
 flutter run
 ```
 
-### Demonstração
-Aqui está uma demonstração do aplicativo:
-![demo](screen_recording.gif)
 
 
 
