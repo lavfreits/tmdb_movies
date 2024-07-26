@@ -1,19 +1,39 @@
-part of 'movie_cubit.dart';
+part of 'movie_bloc.dart';
 
-abstract class MovieStates {}
+abstract class MovieState {}
 
-class MovieInitialState extends MovieStates {}
+class MovieLoadingState extends MovieState {}
 
-class MovieLoadingState extends MovieStates {}
+class MovieSuccessState extends MovieState {
+  final TitleMovieModel movie;
+  final List<Provider> movieProviders;
+  final List<MovieModel> movies;
+  late final bool isFavorite;
 
-class MovieSucessState extends MovieStates {
-  MovieSucessState({required this.movie});
+  MovieSuccessState({
+    required this.movie,
+    required this.movieProviders,
+    required this.movies,
+    required this.isFavorite,
+  });
 
-  final TitleMovieModel? movie;
+  MovieSuccessState copyWith({
+    TitleMovieModel? movie,
+    List<Provider>? movieProviders,
+    List<MovieModel>? movies,
+    bool? isFavorite,
+  }) {
+    return MovieSuccessState(
+      movie: movie ?? this.movie,
+      movieProviders: movieProviders ?? this.movieProviders,
+      movies: movies ?? this.movies,
+      isFavorite: isFavorite ?? this.isFavorite,
+    );
+  }
 }
 
-class MovieErrorState extends MovieStates {
-  MovieErrorState({required this.error});
-
+class MovieErrorState extends MovieState {
   final String error;
+
+  MovieErrorState({required this.error});
 }

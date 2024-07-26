@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 
-class GenreBox extends StatelessWidget {
-  const GenreBox({Key? key, this.genre}) : super(key: key);
+class RoundedBox extends StatelessWidget {
+  const RoundedBox({
+    Key? key,
+    this.name,
+  }) : super(key: key);
 
-  final String? genre;
+  final String? name;
 
   @override
   Widget build(BuildContext context) {
-    if (genre != null) {
+    if (name != null) {
       return Container(
-        height: 30,
+        height: 25,
         decoration: ShapeDecoration(
           color: const Color(0xFF2F3142),
           shape: RoundedRectangleBorder(
@@ -18,9 +21,9 @@ class GenreBox extends StatelessWidget {
         ),
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.only(left: 8, right: 8),
+            padding: const EdgeInsets.only(left: 15, right: 15),
             child: Text(
-              genre!,
+              name!,
               textAlign: TextAlign.center,
               style: const TextStyle(
                 color: Colors.white,
@@ -33,6 +36,8 @@ class GenreBox extends StatelessWidget {
         ),
       );
     }
-    return const Center(child: CircularProgressIndicator());
+    return const Center(
+      child: CircularProgressIndicator(),
+    );
   }
 }

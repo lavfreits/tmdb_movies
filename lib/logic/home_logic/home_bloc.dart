@@ -1,12 +1,14 @@
 import 'package:bloc/bloc.dart';
-import 'package:tmdb_movies/data/data_fetch.dart';
-import 'package:tmdb_movies/models/list_movies_model.dart';
+import 'package:tmdb_movies/data/home_data_source.dart';
 
-part 'home_events.dart';
+import '../../models/movie_model.dart';
 
+part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeStates> {
+  HomeDataSource dataSource = HomeDataSourceImpl();
+
   HomeBloc() : super(HomeInitialState()) {
     on<LoadMoviesEvent>(getMovies);
     on<PerformSearchEvent>(_performSearch);
@@ -14,40 +16,67 @@ class HomeBloc extends Bloc<HomeEvent, HomeStates> {
 
   Future<void> getMovies(event, emit) async {
     if (state is HomeLoadingState ||
-        (state is HomeSucessState && (state as HomeSucessState).loadingMore)) {
+        (state is HomeSuccessState &&
+            (state as HomeSuccessState).loadingMore)) {
       return;
     }
 
     var page = 1;
-    List<MovieModel> movies = [];
+    var pagePopulars = 1;
 
-    if (state is HomeSucessState) {
-      var currentState = state as HomeSucessState;
+    List<MovieModel> movies = [];
+    List<MovieModel> populars = [];
+
+    if (state is HomeSuccessState) {
+      var currentState = state as HomeSuccessState;
+
+      pagePopulars = currentState.popularsPage + 1;
+
+      populars = currentState.populars;
+
       page = currentState.page + 1;
+
       movies = currentState.movies;
-      emit(HomeSucessState(
+
+      emit(HomeSuccessState(
         movies: movies,
+        populars: populars,
         page: page,
         loadingMore: true,
+        popularsPage: pagePopulars,
       ));
     } else {
       emit(HomeLoadingState());
     }
+    if (page == 1 && pagePopulars == 1) {
+      final newMovies = await dataSource.getMoviesData(page);
+      movies = [...movies, ...newMovies];
 
-    final newMovies = await fetchData(page);
-    movies = [...movies, ...newMovies];
-    emit(HomeSucessState(movies: movies, page: page));
-  }
-  Future<void> _performSearch(PerformSearchEvent event, Emitter<HomeStates> emit) async {
-    if (state is HomeSucessState) {
-      final filteredMovies = (state as HomeSucessState).movies
-          .where((movie) => movie.title.toLowerCase().contains(event.query.toLowerCase()))
-          .toList();
-      emit(HomeSearchState(filteredMovies: filteredMovies));
+      final newPopulars = await dataSource.getPopularMovies(pagePopulars);
+      populars = [...populars, ...newPopulars];
+    } else if (event.isPopular) {
+      final newPopulars = await dataSource.getPopularMovies(pagePopulars);
+
+      populars = [...populars, ...newPopulars];
+    } else {
+      final newMovies = await dataSource.getMoviesData(page);
+
+      movies = [...movies, ...newMovies];
     }
-    if(event.query == ''){
-      emit(HomeInitialState());
-    }
+
+    emit(HomeSuccessState(
+      movies: movies,
+      populars: populars,
+      page: page,
+      popularsPage: pagePopulars,
+    ));
   }
 
+  Future<void> _performSearch(event, emit) async {
+    if (event.query.isNotEmpty) {
+      final searchResult = await dataSource.searchMovies(event.query);
+
+      emit(HomeSearchState(filteredMovies: searchResult));
+    }
+  }
 }
