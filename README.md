@@ -3,9 +3,17 @@
 Este é um aplicativo de filmes desenvolvido com Flutter, utilizando a API do The Movie Database (TMDB) para buscar e exibir informações sobre filmes.
 
 
-### Demonstração
-Aqui está uma demonstração do aplicativo:
-![demo](screen_recording.mp4)
+### Capturas de Tela
+
+<img src="splash.png" alt="Splash page" width="360" height="790">
+
+<img src="home_page.png" alt="Home page" width="360" height="790">
+
+<img src="movie_details_page.png" alt="Movie Details page" width="360" height="790">
+
+<img src="movie_details_page_2.png" alt="Movie Details page" width="360" height="790">
+
+<img src="favorites_page.png" alt="Favorites page" width="360" height="790">
 
 ## Funcionalidades
 
