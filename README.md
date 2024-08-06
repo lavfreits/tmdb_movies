@@ -5,7 +5,7 @@ Este é um aplicativo de filmes desenvolvido com Flutter, utilizando a API do Th
 
 ### Capturas de Tela
 
-![Tmdb_app](https://raw.githubusercontent.com/.gif)
+![Tmdb_app](https://raw.githubusercontent.com/lavfreits/tmdb_movies/main/screen_recording.gif)
 
 
 ## Funcionalidades
